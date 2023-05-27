@@ -1,0 +1,122 @@
+
+<ng-template #content let-modal  >
+    <div class="modal-header" style="background-color: #ACA9A9;">
+        <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body" style="background-color: #ACA9A9;" >
+             
+        <app-comment [comment] = "comment"></app-comment>
+            
+    </div>
+    <div class="modal-footer" style="background-color: #ACA9A9;">
+        <button type="button" mat-raised-button color="primary" style="margin-right:auto" (click) = "SendComment()">Отправить</button>
+        <button type="button"mat-raised-button color="primary" (click)="modal.close('Save click')">Отмена</button>
+    </div>
+</ng-template>	 
+
+<div class="wrapper" >
+     
+
+    
+        <div class="headerBox">
+            
+            <span  style="margin-left: 10px;">{{Product.name}}</span>
+
+        </div>
+        
+        <div class="box2">
+            
+            <ngb-carousel *ngIf="images" >
+                <ng-template ngbSlide >
+                    <div   >
+                        <img [src]="images[0]" style="height:330px; width: 100%" alt="Random first slide" />
+                    </div>
+                    
+                </ng-template>
+                
+            </ngb-carousel>
+            <p class="price" >{{Product.price}} ₽</p>
+            
+            <button mat-raised-button color="primary" style="width: 90%; margin-left: 5%;  margin-top: 5px;  height: 20%; ">
+                в избранное  <mat-icon>bookmark</mat-icon>
+            </button>
+            <button mat-raised-button color="primary" style="width: 90%; margin-left: 5%;  margin-top: 5px;  height: 20%; " (click) = "AddToCart()">
+                Добавить в корзину <mat-icon>add_shopping_cart</mat-icon>
+            </button>
+            
+            <button mat-raised-button color="primary" style="width: 90%; margin-left: 5%;  margin-top: 5px;  height: 20%; " (click)="open(content)">
+                 Комментарий  <mat-icon>comment</mat-icon>
+            </button>
+            <button mat-raised-button color="primary"  class="btn btn-lg btn-outline-primary"   style=" margin-right: 30px; float: right;   width: 150px;  "    matBadgeSize="large">
+				
+			  </button>
+        </div>
+         
+
+         
+     
+    <div class="box4"><div >
+        
+        
+        <mat-tab-group class="Product"  mat-stretch-tabs="true" mat-align-tabs="start">
+           
+                <mat-tab label="Характеристики"   > 
+                
+                    <div  *ngFor="let type of Product.typesCharacteristics" >
+                        <div  >
+                            <table class="table ">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">{{type.name}}</th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody >
+                                    <tr *ngFor="let characteristic of type.charastitics">
+                                        <td ><Span>{{characteristic.name}}</Span></td>
+                                        <td ><Span>{{characteristic.text}}</Span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                </mat-tab>
+           
+            <mat-tab label="Комментарии"> 
+                
+                <mat-card class="example-card" *ngFor = "let comment of Product.comments"  style="background-color:gray; box-shadow: 0 0 10px rgba(0,0,0,2);  margin-right: 30px;  max-height: max-content;  margin-left: 30px; margin-top: 30px;overflow-wrap: break-word; margin-bottom: 30px;">
+                    
+                    <mat-card-header>
+                      <div mat-card-avatar class="example-header-image"></div>
+                      <mat-card-title><ngb-rating   [(rate)]="comment.stars" ></ngb-rating></mat-card-title>
+                      <mat-card-subtitle>{{comment.userName}}</mat-card-subtitle>
+                    </mat-card-header>
+                     
+                    <mat-card-content>
+                     
+                        <H1>Достоинства</H1>
+                        <span>{{comment.dignity}}</span>
+                        <H1>Недостки</H1>
+                        <span>{{comment.flaws}}</span>
+                        <H1>Комментарий</H1>
+                        <span>{{comment.comment}}</span>
+                        
+                     
+                    </mat-card-content>
+                    <mat-card-actions>
+                      <button mat-raised-button color="primary" style="    width: 150px;  " matBadgeColor="accent"   matBadge="{{comment.countLikes}} "   matBadgeSize="large"  (click)  = "LikeComment(comment)" >LIKE</button>
+                    </mat-card-actions>
+                  </mat-card>
+            </mat-tab>
+             
+          </mat-tab-group>
+    </div>
+</div>
+</div>
+
+
+
+
+
