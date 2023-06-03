@@ -19,6 +19,7 @@ export class ProductPageComponent implements OnInit {
   images:string[] = [];
   currentRate:number = 2;
   comment:CommentEntity = new CommentEntity();
+  displayedColumns: string[] = ['name', 'text'   ];
 
   constructor(private _router: ActivatedRoute,private _service: BaseService,private _identetyService :IdentetyService, config: NgbRatingConfig, private helper:ProductsHelper,private modalService: NgbModal) { 
 

@@ -59,13 +59,13 @@
     <div class="box4"><div >
         
         
-        <mat-tab-group class="Product"  mat-stretch-tabs="true" mat-align-tabs="start">
+        <mat-tab-group    mat-stretch-tabs="true" mat-align-tabs="start">
            
                 <mat-tab label="Характеристики"   > 
                 
-                    <div  *ngFor="let type of Product.typesCharacteristics" >
-                        <div  >
-                            <table class="table ">
+                   
+                         
+                            <table class="table" *ngFor="let type of Product.typesCharacteristics">
                                 <thead>
                                     <tr>
                                         <th scope="col">{{type.name}}</th>
@@ -73,14 +73,14 @@
                                     </tr>
                                 </thead>
                                 <tbody >
-                                    <tr *ngFor="let characteristic of type.charastitics">
-                                        <td ><Span>{{characteristic.name}}</Span></td>
-                                        <td ><Span>{{characteristic.text}}</Span></td>
+                                    <tr   *ngFor="let characteristic of type.charastitics">
+                                        <td style="width: 80%;"> {{characteristic.name}}</td>
+                                        <td > {{characteristic.text}} </td>
                                     </tr>
                                 </tbody>
                             </table>
-                        </div>
-                    </div>
+                         
+                     
                     
                 </mat-tab>
            

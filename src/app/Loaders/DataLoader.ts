@@ -24,9 +24,9 @@ export class DataLoader{
       let result =   await Promise.resolve<any>(new Promise<any>((resolve, reject) =>{
         
         this.configurationService.getValue("apiUrl").subscribe(data => {
-            resolve(data);
             this._apiUrl = data
             console.log(data);
+            resolve(data);
         });
 
      }));
