@@ -10,7 +10,7 @@
             
     </div>
     <div class="modal-footer" style="background-color: #ACA9A9;">
-        <button type="button" mat-raised-button color="primary" style="margin-right:auto" (click) = "SendComment()">Отправить</button>
+        <button type="button" mat-raised-button color="primary" style="margin-right:auto" (click) = "SendComment();modal.close('Save click')">Отправить</button>
         <button type="button"mat-raised-button color="primary" (click)="modal.close('Save click')">Отмена</button>
     </div>
 </ng-template>	 
@@ -106,7 +106,7 @@
                      
                     </mat-card-content>
                     <mat-card-actions>
-                      <button mat-raised-button color="primary" style="    width: 150px;  " matBadgeColor="accent"   matBadge="{{comment.countLikes}} "   matBadgeSize="large"  (click)  = "LikeComment(comment)" >LIKE</button>
+                      <button mat-raised-button color="primary" style="    width: 150px;  " matBadgeColor="accent"   matBadge="{{comment.countLikes}} " [matBadgeHidden]="comment.countLikes == 0"  matBadgeSize="large"  (click)  = "LikeComment(comment)" >LIKE</button>
                     </mat-card-actions>
                   </mat-card>
             </mat-tab>

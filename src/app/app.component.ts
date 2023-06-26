@@ -46,9 +46,7 @@ export class AppComponent {
     public _identetyService:IdentetyService){
     productsHelper.GetProducts(); /// что бы на фронте сразу кол-во товаров отображалось, а не после какого то заказа
     _identetyService.onAuth.subscribe((username) =>{
-      
-      
-       this.authMessage = "добрейший вечерочек " + username
+       this.authMessage = "Здравствуйте " + username
        let el: HTMLElement = document.getElementById("closebutton") as HTMLElement;
         el.click();
         this.model.password = "";
@@ -57,7 +55,6 @@ export class AppComponent {
   }
   public async  Registration():Promise<boolean>{
     await this._identetyService.Registration(this.regModel)
-    console.log("вызов колбэка");
      return true;
   }
 

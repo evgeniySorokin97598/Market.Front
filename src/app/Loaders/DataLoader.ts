@@ -1,5 +1,5 @@
 import { Category, SubCategory } from "../Entities/Category";
-import { CommentEntity, Product } from "../Entities/Product";
+import { CommentEntity, OrderBy, Product } from "../Entities/Product";
 import { HttpClientHelper } from "../Helpers/HttpClientHelper";
 import { ConfigurationService } from "../Services/ConfigService";
 
@@ -41,9 +41,9 @@ export class DataLoader{
        return  await this._helper.GetRequest(url);
 
     }
-    public async GetProductsBySubCategory(subcategory:string):Promise<Product[]>{
+    public async GetProductsBySubCategory(subcategory:string,order:OrderBy ):Promise<Product[]>{
         await this.Init();
-        let url = this._apiUrl + "Products/GetProductsByCategory/" + subcategory;
+        let url = this._apiUrl + "Products/GetProductsByCategory/" + subcategory + '/' + order;
         return await this._helper.GetRequest(url);
     }
     public async GetProductById(id:number) : Promise<Product>{

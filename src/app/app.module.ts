@@ -35,7 +35,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {  ReactiveFormsModule} from '@angular/forms';
 import { IdentetyService } from './Services/IdentetyService';
 import { CommentComponent } from './Components/comment/comment.component';
- 
+import {MatRadioModule} from '@angular/material/radio';
+import {MatListModule} from '@angular/material/list';
 const routes: Routes = [
   {path: 'Products/:SubCategoryName', component:ProductsListComponent},
   {path: 'Product/:id', component:ProductPageComponent},
@@ -57,7 +58,8 @@ const routes: Routes = [
      
   ],
   imports: [
-     
+    MatListModule,
+    MatRadioModule,
     ReactiveFormsModule,
     MatCheckboxModule,
     MatCardModule,

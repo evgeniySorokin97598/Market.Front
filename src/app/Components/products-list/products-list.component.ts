@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Product } from 'src/app/Entities/Product';
+import { OrderBy, Product } from 'src/app/Entities/Product';
 import { BaseService } from 'src/app/Services/BaseService';
 import { NgbRatingConfig, NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 @Component({
@@ -25,4 +25,14 @@ export class ProductsListComponent implements OnInit {
     this._router.navigate(['/Product/' + id]);
   }
   
+  public async OrderByPrice(){
+    let s = String(this.router.snapshot.paramMap.get("SubCategoryName"));
+    this.Products =  await this._service.GetProducts(s, OrderBy.Price);
+
+  }
+  public async OrderByPriceDesc(){
+    let s = String(this.router.snapshot.paramMap.get("SubCategoryName"));
+    this.Products =  await this._service.GetProducts(s, OrderBy.DescPrice);
+
+  }
 }

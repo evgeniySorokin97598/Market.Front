@@ -37,14 +37,13 @@ export class ProductPageComponent implements OnInit {
     this.images.push(this.Product.image);
    
     this.comment.productId = this.Product.id;
-    console.log(this.comment.productId);
-    console.log(this.comment.stars);
-    console.log(this.Product);
+
   }
 
   async SendComment(){
     this._service.SendComment(this.comment);
-
+    this.Product.comments.push(this.comment);
+    this.comment = new CommentEntity();
   }
 
   /// добавление товара в корзину
@@ -53,7 +52,8 @@ export class ProductPageComponent implements OnInit {
     this.helper.AddProduct(this.Product.id);
   }
   public LikeComment( comment:CommentEntity){
-    this._service.LikeComment(comment.commentId)
+    this._service.LikeComment(comment.commentId);
+    
   }
   open(content:any) {
     if (this._identetyService.IsAuthorize){

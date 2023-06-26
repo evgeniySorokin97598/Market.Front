@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Category, SubCategory } from "../Entities/Category";
-import { CommentEntity, Product } from "../Entities/Product";
+import { CommentEntity, OrderBy, Product } from "../Entities/Product";
 import { HttpClientHelper } from "../Helpers/HttpClientHelper";
 import { DataLoader } from "../Loaders/DataLoader";
 import { ConfigurationService } from "./ConfigService";
@@ -24,8 +24,8 @@ export class BaseService{
        return await this._dataLoader.GetHomePageData();
 
     }
-    public async GetProducts(subcategory:string):Promise<Product[]>{
-        return await this._dataLoader.GetProductsBySubCategory(subcategory);
+    public async GetProducts(subcategory:string,order: OrderBy  = OrderBy.None):Promise<Product[]>{
+        return await this._dataLoader.GetProductsBySubCategory(subcategory,order);
 
     }
     public async GetProductById(id:number):Promise<Product>{
